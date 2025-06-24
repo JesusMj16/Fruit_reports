@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  postres_db:
+    image: postgres:15
+    container_name: fruteria_db
+    environment:
+      POSTGRES_DB: fruteria
+      POSTGRES_USER: jesus
+      POSTGRES_PASSWORD: b1e2i3s4
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+
